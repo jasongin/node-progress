@@ -50,6 +50,10 @@ These are tokens you can use in the format of your progress bar.
 - `:percent` completion percentage
 - `:eta` estimated completion time in seconds
 
+Tokens other than `:bar` may include a suffix to specify width, that is a minus
+(for left-padding) or plus (for right-padding) followed by an integer, for example
+`:percent-4`.
+
 ### Custom Tokens
 
 You can define custom tokens by adding a `{'name': value}` object parameter to your method (`tick()`, `update()`, etc.) calls.
@@ -94,7 +98,7 @@ req.on('response', function(res){
   var len = parseInt(res.headers['content-length'], 10);
 
   console.log();
-  var bar = new ProgressBar('  downloading [:bar] :percent :etas', {
+  var bar = new ProgressBar('  downloading [:bar] :percent-4 :eta-3s', {
     complete: '=',
     incomplete: ' ',
     width: 20,
@@ -116,7 +120,7 @@ req.end();
 The above example result in a progress bar like the one below.
 
 ```
-downloading [=====             ] 29% 3.7s
+downloading [=====             ]  29% 3.7s
 ```
 
 You can see more examples in the `examples` folder.
